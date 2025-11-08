@@ -2,6 +2,15 @@
 
 Pinterest hesabınızı otomatik olarak büyütmek için kapsamlı AI destekli platform. PinClicks, ContentGoblin ve BlogToPin gibi araçların tüm özelliklerini tek bir platformda birleştirir.
 
+## ⚡ Hızlı Başlangıç
+
+[![Run on Replit](https://replit.com/badge/github/Websimurg/mini-new)](https://replit.com/github/Websimurg/mini-new)
+
+**2 Dakikada Başlat:**
+- 🚀 [Replit'e Deploy Et](REPLIT_DEPLOY.md) - En kolay yol!
+- 💻 [Lokal Kurulum](BASLATMA_KILAVUZU.md) - Bilgisayarınızda çalıştırın
+- 📚 [API Kullanımı](API_INTEGRATION.md) - API ile entegrasyon
+
 ## 🚀 Özellikler
 
 ### 1. AI İçerik Üretimi (ContentGoblin Özellikleri)

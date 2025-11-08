@@ -1,10 +1,19 @@
 run = "python3 demo_server.py"
 language = "python3"
-onBoot = "pip install -q fastapi uvicorn python-dotenv openai requests httpx pillow"
+onBoot = "pip install -q fastapi uvicorn python-dotenv openai requests pydantic httpx"
 
 [nix]
 channel = "stable-22_11"
 
+[env]
+# Replit Secrets'tan okunacak environment variables
+# Secrets'ı Tools > Secrets menüsünden ekleyin
+PYTHONUNBUFFERED = "1"
+
 [deployment]
 run = ["python3", "demo_server.py"]
 deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
