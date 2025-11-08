@@ -10,6 +10,9 @@ psycopg2-binary==2.9.9
 alembic==1.13.1
 redis==5.0.1
 
+# Supabase
+supabase==2.3.4
+
 # Pinterest API
 py3-pinterest==0.4.2
 requests==2.31.0
@@ -23,6 +26,7 @@ python-multipart==0.0.6
 # Image Processing & Generation
 stability-sdk==0.8.4
 replicate==0.22.0
+fal-client==0.4.1
 
 # Task Queue & Scheduling
 celery==5.3.6

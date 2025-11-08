@@ -6,6 +6,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 from app.services.ai.content_generator import ai_content_generator
 from app.services.ai.image_generator import ai_image_generator
+from app.services.ai.fal_image_generator import fal_image_generator
 
 router = APIRouter()
 
@@ -29,6 +30,8 @@ class GenerateImageRequest(BaseModel):
     prompt: str
     add_text: Optional[str] = None
     text_position: str = "center"
+    use_fal: bool = True  # Use Fal.ai by default
+    style: Optional[str] = "modern"
 
 class OptimizeContentRequest(BaseModel):
     title: str
@@ -80,12 +83,25 @@ async def generate_hashtags(request: GenerateHashtagsRequest):
 
 @router.post("/generate/image")
 async def generate_image(request: GenerateImageRequest):
-    """Generate pin image using AI"""
+    """Generate pin image using AI (Fal.ai or DALL-E)"""
     try:
-        # Generate image
-        image_bytes = await ai_image_generator.generate_pin_image_dalle(
-            prompt=request.prompt
-        )
+        # Generate image using selected service
+        if request.use_fal:
+            # Use Fal.ai (faster and cheaper)
+            if request.style:
+                image_bytes = await fal_image_generator.generate_with_style(
+                    prompt=request.prompt,
+                    style=request.style
+                )
+            else:
+                image_bytes = await fal_image_generator.generate_pin_image(
+                    prompt=request.prompt
+                )
+        else:
+            # Use DALL-E (OpenAI)
+            image_bytes = await ai_image_generator.generate_pin_image_dalle(
+                prompt=request.prompt
+            )
 
         # Add text overlay if requested
         if request.add_text:
@@ -102,7 +118,8 @@ async def generate_image(request: GenerateImageRequest):
 
         return {
             "image": f"data:image/png;base64,{image_base64}",
-            "message": "Image generated successfully"
+            "message": "Image generated successfully",
+            "generator": "fal.ai" if request.use_fal else "dall-e-3"
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

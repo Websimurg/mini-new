@@ -15,13 +15,23 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     REDIS_URL: str
 
+    # Supabase
+    SUPABASE_URL: str = ""
+    SUPABASE_ANON_KEY: str = ""
+
     # API Keys
     OPENAI_API_KEY: str
     ANTHROPIC_API_KEY: str = ""
+
+    # Pinterest API
     PINTEREST_APP_ID: str
-    PINTEREST_APP_SECRET: str
+    PINTEREST_APP_SECRET: str = ""
+    PINTEREST_CLIENT_ID: str = ""
+    PINTEREST_ACCESS_TOKEN: str = ""
+    PINTEREST_REDIRECT_URI: str = ""
 
     # Image Generation
+    FAL_API_KEY: str = ""
     STABILITY_API_KEY: str = ""
     REPLICATE_API_TOKEN: str = ""
 

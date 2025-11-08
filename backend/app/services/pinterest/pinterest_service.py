@@ -10,10 +10,14 @@ from app.core.config import settings
 class PinterestService:
     BASE_URL = "https://api.pinterest.com/v5"
 
-    def __init__(self, access_token: str):
-        self.access_token = access_token
+    def __init__(self, access_token: Optional[str] = None):
+        # Use provided token or default from settings
+        self.access_token = access_token or settings.PINTEREST_ACCESS_TOKEN
+        if not self.access_token:
+            raise ValueError("Pinterest access token not provided and not configured in settings")
+
         self.headers = {
-            "Authorization": f"Bearer {access_token}",
+            "Authorization": f"Bearer {self.access_token}",
             "Content-Type": "application/json"
         }
 
@@ -218,6 +222,10 @@ class PinterestService:
             # Fallback: return empty list if endpoint doesn't exist
             return []
 
-def create_pinterest_service(access_token: str) -> PinterestService:
+def create_pinterest_service(access_token: Optional[str] = None) -> PinterestService:
     """Factory function to create Pinterest service"""
     return PinterestService(access_token)
+
+def get_default_pinterest_service() -> PinterestService:
+    """Get Pinterest service with default credentials from settings"""
+    return PinterestService()
