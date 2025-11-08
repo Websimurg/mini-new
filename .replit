@@ -1,0 +1,10 @@
+run = "python3 demo_server.py"
+language = "python3"
+onBoot = "pip install -q fastapi uvicorn python-dotenv openai requests httpx pillow"
+
+[nix]
+channel = "stable-22_11"
+
+[deployment]
+run = ["python3", "demo_server.py"]
+deploymentTarget = "cloudrun"
