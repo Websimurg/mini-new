@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest Growth Platform</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="logo">📌 Pinterest Growth Platform</h1>
+                <p class="subtitle">AI destekli Pinterest otomasyon platformu</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="ai-content">🎨 AI İçerik</button>
+                <button class="tab-btn" data-tab="chatbot">💬 CEO Chatbot</button>
+                <button class="tab-btn" data-tab="trends">📈 Trend Analizi</button>
+                <button class="tab-btn" data-tab="profile">👤 Pinterest Profil</button>
+            </div>
+
+            <!-- Tab: AI İçerik -->
+            <div class="tab-content active" id="ai-content">
+                <div class="card">
+                    <h2>🎨 AI İçerik Üretimi</h2>
+
+                    <!-- Pin Açıklaması -->
+                    <div class="section">
+                        <h3>Pin Açıklaması Oluştur</h3>
+                        <div class="form-group">
+                            <label>Konu:</label>
+                            <input type="text" id="desc-topic" placeholder="Örn: Sağlıklı smoothie tarifleri">
+                        </div>
+                        <div class="form-group">
+                            <label>Anahtar Kelimeler (virgülle ayır):</label>
+                            <input type="text" id="desc-keywords" placeholder="smoothie, sağlıklı, detoks">
+                        </div>
+                        <div class="form-group">
+                            <label>Ton:</label>
+                            <select id="desc-tone">
+                                <option value="engaging">Engaging (Çekici)</option>
+                                <option value="professional">Professional (Profesyonel)</option>
+                                <option value="friendly">Friendly (Samimi)</option>
+                                <option value="educational">Educational (Eğitici)</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" onclick="generateDescription()">📝 Açıklama Oluştur</button>
+                        <div class="result" id="desc-result"></div>
+                    </div>
+
+                    <!-- Başlıklar -->
+                    <div class="section">
+                        <h3>Başlık Önerileri</h3>
+                        <div class="form-group">
+                            <label>Konu:</label>
+                            <input type="text" id="title-topic" placeholder="Örn: Vegan brownie tarifi">
+                        </div>
+                        <div class="form-group">
+                            <label>Anahtar Kelimeler:</label>
+                            <input type="text" id="title-keywords" placeholder="vegan, brownie, çikolatalı">
+                        </div>
+                        <div class="form-group">
+                            <label>Kaç adet:</label>
+                            <input type="number" id="title-count" value="5" min="1" max="10">
+                        </div>
+                        <button class="btn-primary" onclick="generateTitles()">✨ Başlık Oluştur</button>
+                        <div class="result" id="title-result"></div>
+                    </div>
+
+                    <!-- Hashtagler -->
+                    <div class="section">
+                        <h3>Hashtag Üretimi</h3>
+                        <div class="form-group">
+                            <label>Konu:</label>
+                            <input type="text" id="hashtag-topic" placeholder="Örn: Home decor">
+                        </div>
+                        <div class="form-group">
+                            <label>Anahtar Kelimeler:</label>
+                            <input type="text" id="hashtag-keywords" placeholder="interior, modern, minimal">
+                        </div>
+                        <div class="form-group">
+                            <label>Kaç adet:</label>
+                            <input type="number" id="hashtag-count" value="15" min="5" max="30">
+                        </div>
+                        <button class="btn-primary" onclick="generateHashtags()">#️⃣ Hashtag Oluştur</button>
+                        <div class="result" id="hashtag-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Chatbot -->
+            <div class="tab-content" id="chatbot">
+                <div class="card">
+                    <h2>💬 CEO Chatbot</h2>
+                    <p class="info">Pinterest strateji danışmanınızla sohbet edin</p>
+
+                    <div class="chat-container" id="chat-messages">
+                        <div class="chat-message bot">
+                            <strong>CEO Bot:</strong> Merhaba! Pinterest hesabınızı büyütmek için size nasıl yardımcı olabilirim?
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="Sorunuzu yazın..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                        <button class="btn-primary" onclick="sendChatMessage()">Gönder</button>
+                    </div>
+
+                    <div class="section">
+                        <h3>📋 Büyüme Stratejisi Oluştur</h3>
+                        <div class="form-group">
+                            <label>Niche (Alan):</label>
+                            <input type="text" id="strategy-niche" placeholder="Örn: Healthy Food">
+                        </div>
+                        <div class="form-group">
+                            <label>Mevcut Takipçi:</label>
+                            <input type="number" id="strategy-current" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label>Hedef Takipçi:</label>
+                            <input type="number" id="strategy-target" value="10000">
+                        </div>
+                        <div class="form-group">
+                            <label>Süre (Ay):</label>
+                            <input type="number" id="strategy-months" value="6">
+                        </div>
+                        <button class="btn-primary" onclick="createStrategy()">🎯 Strateji Oluştur</button>
+                        <div class="result" id="strategy-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Trends -->
+            <div class="tab-content" id="trends">
+                <div class="card">
+                    <h2>📈 Trend Analizi</h2>
+                    <p class="info">Niche'inizdeki trendleri keşfedin</p>
+
+                    <div class="form-group">
+                        <label>Niche (Alan):</label>
+                        <input type="text" id="trend-niche" placeholder="Örn: fashion, home-decor, fitness">
+                    </div>
+                    <button class="btn-primary" onclick="analyzeTrends()">🔍 Trend Analizi Yap</button>
+                    <div class="result" id="trend-result"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Profile -->
+            <div class="tab-content" id="profile">
+                <div class="card">
+                    <h2>👤 Pinterest Profil</h2>
+                    <p class="info">Pinterest hesap bilgilerinizi görüntüleyin</p>
+
+                    <button class="btn-primary" onclick="getProfile()">📊 Profil Bilgilerini Al</button>
+                    <div class="result" id="profile-result"></div>
+
+                    <div class="section">
+                        <h3>📌 Boardlar</h3>
+                        <button class="btn-primary" onclick="getBoards()">📋 Board Listesi</button>
+                        <div class="result" id="boards-result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Pinterest Growth Platform |
+                   <a href="http://localhost:8080/docs" target="_blank">API Docs</a>
+                </p>
+                <p class="api-status">
+                    API Status: <span id="api-status" class="status-dot">●</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
