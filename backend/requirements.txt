@@ -1,0 +1,51 @@
+# FastAPI ve Web Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Database
+sqlalchemy==2.0.25
+psycopg2-binary==2.9.9
+alembic==1.13.1
+redis==5.0.1
+
+# Pinterest API
+py3-pinterest==0.4.2
+requests==2.31.0
+
+# AI & ML
+openai==1.10.0
+anthropic==0.18.0
+pillow==10.2.0
+python-multipart==0.0.6
+
+# Image Processing & Generation
+stability-sdk==0.8.4
+replicate==0.22.0
+
+# Task Queue & Scheduling
+celery==5.3.6
+celery-beat==2.5.0
+flower==2.0.1
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+bcrypt==4.1.2
+
+# Utilities
+python-dotenv==1.0.0
+httpx==0.26.0
+aiofiles==23.2.1
+pyyaml==6.0.1
+
+# Monitoring & Logging
+python-json-logger==2.0.7
+sentry-sdk==1.40.0
+
+# RSS Feed
+feedparser==6.0.10
+beautifulsoup4==4.12.3
+lxml==5.1.0
